@@ -37,7 +37,8 @@ class _MyHomePageState extends State<MyHomePage> {
       color: Colors.red,
       child: SafeArea(
         child: Scaffold(
-          body: Column(   //mainViewAppColumn
+          body: Column(
+            //mainViewAppColumn
             children: [
               //TopMenuBar
               Container(
@@ -52,7 +53,9 @@ class _MyHomePageState extends State<MyHomePage> {
                     ),
                     Row(
                       children: [
-                        Icon(Icons.search,),
+                        Icon(
+                          Icons.search,
+                        ),
                         SizedBox(
                           width: 10,
                         ),
@@ -62,6 +65,52 @@ class _MyHomePageState extends State<MyHomePage> {
                   ],
                 ),
               ),
+              SizedBox(
+                height: 20,
+              ),
+              //Popular Books
+              Row(
+                children: [
+                  Container(
+                    margin: EdgeInsets.only(left: 20),
+                    child: Text(
+                      "Popular Books",
+                      style: TextStyle(fontSize: 30),
+                    ),
+                  ),
+                ],
+              ),
+              SizedBox(height: 20,),
+              //Horizontal Scroller
+              Container(
+                height: 180,
+                child: Stack(
+                  children: [
+                    Positioned(
+                        top: 0,
+                        left: -30,
+                        right: 0,
+                        child: SizedBox(
+                      height: 180,
+                      child: PageView.builder(
+                          controller: PageController(viewportFraction: 0.8),
+                          itemCount: 4,
+                          itemBuilder: (BuildContext context, int index) {
+                            return Container(
+                              margin: EdgeInsets.only(left: 5, right: 5),
+                              decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(15),
+                                  color: Colors.green,
+                                  image: const DecorationImage(
+                                      image: AssetImage(
+                                          'assets/img/abstract5.jpg'),
+                                      fit: BoxFit.cover)),
+                            );
+                          }),
+                    ))
+                  ],
+                ),
+              )
             ],
           ),
         ),
