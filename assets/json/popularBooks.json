@@ -1,0 +1,37 @@
+[
+  {
+    "rating": 5,
+    "title": "Great product",
+    "text": "I was very happy with this product. It worked well and met my expectations.",
+    "img": "img/abstract1.jpg",
+    "audio": "https://example.com/product1.mp3"
+  },
+  {
+    "rating": 3,
+    "title": "Average product",
+    "text": "This product was okay. It did the job, but there were some issues.",
+    "img": "img/abstract2.jpg",
+    "audio": "https://example.com/product2.mp3"
+  },
+  {
+    "rating": 1,
+    "title": "Disappointing product",
+    "text": "I was very disappointed with this product. It didn't work as advertised and was a waste of money.",
+    "img": "img/abstract3.jpg",
+    "audio": "https://example.com/product3.mp3"
+  },
+  {
+    "rating": 4,
+    "title": "Good product",
+    "text": "Overall, this product was good. It had a few minor issues, but overall I was satisfied with it.",
+    "img": "img/abstract4.jpg",
+    "audio": "https://example.com/product4.mp3"
+  },
+  {
+    "rating": 2,
+    "title": "Poor product",
+    "text": "This product was not good. It didn't work as expected and was a disappointment.",
+    "img": "img/abstract5.jpg",
+    "audio": "https://example.com/product5.mp3"
+  }
+]

@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 // import 'package:flutter_ebook_audio/src/colors.dart' as AppColors;
 
@@ -30,7 +32,30 @@ class MyHomePage extends StatefulWidget {
   State<MyHomePage> createState() => _MyHomePageState();
 }
 
-class _MyHomePageState extends State<MyHomePage> {
+class _MyHomePageState extends State<MyHomePage>
+    with SingleTickerProviderStateMixin {
+  late List popularBooks = List.empty();
+  late ScrollController _scrollController;
+  late TabController _tabController;
+
+  ReadData() async {
+    await DefaultAssetBundle.of(context)
+        .loadString("json/popularBooks.json")
+        .then((value) {
+      setState(() {
+        popularBooks = json.decode(value);
+      });
+    });
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    _tabController = TabController(length: 3, vsync: this);
+    _scrollController = ScrollController();
+    ReadData();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -80,7 +105,9 @@ class _MyHomePageState extends State<MyHomePage> {
                   ),
                 ],
               ),
-              SizedBox(height: 20,),
+              SizedBox(
+                height: 20,
+              ),
               //Horizontal Scroller
               Container(
                 height: 180,
@@ -91,26 +118,118 @@ class _MyHomePageState extends State<MyHomePage> {
                         left: -30,
                         right: 0,
                         child: SizedBox(
-                      height: 180,
-                      child: PageView.builder(
-                          controller: PageController(viewportFraction: 0.8),
-                          itemCount: 4,
-                          itemBuilder: (BuildContext context, int index) {
-                            return Container(
-                              margin: EdgeInsets.only(left: 5, right: 5),
-                              decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(15),
-                                  color: Colors.green,
-                                  image: const DecorationImage(
-                                      image: AssetImage(
-                                          'assets/img/abstract5.jpg'),
-                                      fit: BoxFit.cover)),
-                            );
-                          }),
-                    ))
+                          height: 180,
+                          child: PageView.builder(
+                              controller: PageController(viewportFraction: 0.8),
+                              itemCount: popularBooks == null
+                                  ? 0
+                                  : popularBooks.length,
+                              itemBuilder: (BuildContext context, int index) {
+                                return Container(
+                                  margin: EdgeInsets.only(left: 5, right: 5),
+                                  decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(15),
+                                      color: Colors.green,
+                                      image: DecorationImage(
+                                          image: AssetImage(
+                                              popularBooks[index]["img"]),
+                                          fit: BoxFit.cover)),
+                                );
+                              }),
+                        ))
                   ],
                 ),
-              )
+              ),
+              //Scrollable TabBar
+              Expanded(
+                  child: NestedScrollView(
+                      controller: _scrollController,
+                      headerSliverBuilder:
+                          (BuildContext context, bool innerBoxIsScrolled) {
+                        return [
+                          SliverAppBar(
+                            pinned: true,
+                            bottom: PreferredSize(
+                              preferredSize: Size.fromHeight(50),
+                              child: Container(
+                                margin: EdgeInsets.all(0),
+                                child: TabBar(
+                                    indicatorPadding: EdgeInsets.only(),  //check
+                                    indicatorSize: TabBarIndicatorSize.label,
+                                    labelPadding: EdgeInsets.all(0),
+                                    controller: _tabController,
+                                    isScrollable: true,
+                                    indicator: BoxDecoration(
+                                        borderRadius: BorderRadius.circular(5),
+                                        boxShadow: [
+                                          BoxShadow(
+                                              color:
+                                                  Colors.grey.withOpacity(0.2),
+                                              blurRadius: 7,
+                                              offset: Offset(0, 0))
+                                        ]),
+                                    tabs: [
+                                      Container(
+                                          width: 120,
+                                          height: 50,
+                                          child: Text(
+                                            'New',
+                                            style:
+                                                TextStyle(color: Colors.white),
+                                          ),
+                                          decoration: BoxDecoration(
+                                              borderRadius:
+                                                  BorderRadius.circular(10),
+                                              boxShadow: [
+                                                BoxShadow(
+                                                    color: Colors.white
+                                                        .withOpacity(0.3),
+                                                    blurRadius: 7,
+                                                    offset: Offset(0, 0)),
+                                              ])),
+                                      Container(
+                                          width: 120,
+                                          height: 50,
+                                          child: Text(
+                                            'New',
+                                            style:
+                                                TextStyle(color: Colors.white),
+                                          ),
+                                          decoration: BoxDecoration(
+                                              borderRadius:
+                                                  BorderRadius.circular(10),
+                                              boxShadow: [
+                                                BoxShadow(
+                                                    color: Colors.white
+                                                        .withOpacity(0.3),
+                                                    blurRadius: 7,
+                                                    offset: Offset(0, 0)),
+                                              ])),
+                                      Container(
+                                          width: 120,
+                                          height: 50,
+                                          child: Text(
+                                            'New',
+                                            style:
+                                                TextStyle(color: Colors.white),
+                                          ),
+                                          decoration: BoxDecoration(
+                                              borderRadius:
+                                                  BorderRadius.circular(10),
+                                              boxShadow: [
+                                                BoxShadow(
+                                                    color: Colors.white
+                                                        .withOpacity(0.3),
+                                                    blurRadius: 7,
+                                                    offset: Offset(0, 0)),
+                                              ]))
+                                    ]),
+                              ),
+                            ),
+                          )
+                        ];
+                      },
+                      body: TabBarView(children: [])))
             ],
           ),
         ),
