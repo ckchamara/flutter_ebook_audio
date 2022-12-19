@@ -1,7 +1,8 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
-// import 'package:flutter_ebook_audio/src/colors.dart' as AppColors;
+import 'package:flutter_ebook_audio/src/AppColors.dart';
+// import 'package:flutter_ebook_audio/src/AppColors.dart' as AppColors;
 
 void main() {
   runApp(const MyApp());
@@ -71,13 +72,13 @@ class _MyHomePageState extends State<MyHomePage>
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Icon(
+                    const Icon(
                       Icons.menu,
                       size: 24,
                       color: Colors.black,
                     ),
                     Row(
-                      children: [
+                      children: const [
                         Icon(
                           Icons.search,
                         ),
@@ -90,7 +91,7 @@ class _MyHomePageState extends State<MyHomePage>
                   ],
                 ),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 20,
               ),
               //Popular Books
@@ -98,18 +99,19 @@ class _MyHomePageState extends State<MyHomePage>
                 children: [
                   Container(
                     margin: EdgeInsets.only(left: 20),
-                    child: Text(
+                    child: const Text(
                       "Popular Books",
                       style: TextStyle(fontSize: 30),
                     ),
                   ),
                 ],
               ),
-              SizedBox(
+              const SizedBox(
                 height: 20,
               ),
               //Horizontal Scroller
               Container(
+                key: const ObjectKey('Horizontal_Scroller'),
                 height: 180,
                 child: Stack(
                   children: [
@@ -126,7 +128,7 @@ class _MyHomePageState extends State<MyHomePage>
                                   : popularBooks.length,
                               itemBuilder: (BuildContext context, int index) {
                                 return Container(
-                                  margin: EdgeInsets.only(left: 5, right: 5),
+                                  margin: const EdgeInsets.only(left: 5, right: 5),
                                   decoration: BoxDecoration(
                                       borderRadius: BorderRadius.circular(15),
                                       color: Colors.green,
@@ -140,7 +142,7 @@ class _MyHomePageState extends State<MyHomePage>
                   ],
                 ),
               ),
-              //Scrollable TabBar
+              //Scrollable TabBar with Tabs
               Expanded(
                   child: NestedScrollView(
                       controller: _scrollController,
@@ -149,12 +151,14 @@ class _MyHomePageState extends State<MyHomePage>
                         return [
                           SliverAppBar(
                             pinned: true,
+                            backgroundColor: Colors.white,
                             bottom: PreferredSize(
                               preferredSize: Size.fromHeight(50),
                               child: Container(
                                 margin: EdgeInsets.all(0),
                                 child: TabBar(
-                                    indicatorPadding: EdgeInsets.only(),  //check
+                                    indicatorPadding: EdgeInsets.only(),
+                                    //check
                                     indicatorSize: TabBarIndicatorSize.label,
                                     labelPadding: EdgeInsets.all(0),
                                     controller: _tabController,
@@ -172,12 +176,9 @@ class _MyHomePageState extends State<MyHomePage>
                                       Container(
                                           width: 120,
                                           height: 50,
-                                          child: Text(
-                                            'New',
-                                            style:
-                                                TextStyle(color: Colors.white),
-                                          ),
+                                          alignment: Alignment.center,
                                           decoration: BoxDecoration(
+                                            color: AppColors.menu1Color ,
                                               borderRadius:
                                                   BorderRadius.circular(10),
                                               boxShadow: [
@@ -185,17 +186,19 @@ class _MyHomePageState extends State<MyHomePage>
                                                     color: Colors.white
                                                         .withOpacity(0.3),
                                                     blurRadius: 7,
-                                                    offset: Offset(0, 0)),
-                                              ])),
+                                                    offset: const Offset(0, 0)),
+                                              ]),
+                                          child: const Text(
+                                            'New',
+                                            style:
+                                                TextStyle(color: Colors.white),
+                                          )),
                                       Container(
                                           width: 120,
                                           height: 50,
-                                          child: Text(
-                                            'New',
-                                            style:
-                                                TextStyle(color: Colors.white),
-                                          ),
+                                          alignment: Alignment.center,
                                           decoration: BoxDecoration(
+                                            color: AppColors.menu2Color,
                                               borderRadius:
                                                   BorderRadius.circular(10),
                                               boxShadow: [
@@ -204,16 +207,18 @@ class _MyHomePageState extends State<MyHomePage>
                                                         .withOpacity(0.3),
                                                     blurRadius: 7,
                                                     offset: Offset(0, 0)),
-                                              ])),
+                                              ]),
+                                          child: const Text(
+                                            'New',
+                                            style:
+                                                TextStyle(color: Colors.white),
+                                          )),
                                       Container(
                                           width: 120,
                                           height: 50,
-                                          child: Text(
-                                            'New',
-                                            style:
-                                                TextStyle(color: Colors.white),
-                                          ),
+                                          alignment: Alignment.center,
                                           decoration: BoxDecoration(
+                                            color: AppColors.menu3Color,
                                               borderRadius:
                                                   BorderRadius.circular(10),
                                               boxShadow: [
@@ -222,14 +227,46 @@ class _MyHomePageState extends State<MyHomePage>
                                                         .withOpacity(0.3),
                                                     blurRadius: 7,
                                                     offset: Offset(0, 0)),
-                                              ]))
+                                              ]),
+                                          child: const Text(
+                                            'New',
+                                            style:
+                                                TextStyle(color: Colors.white),
+                                          ))
                                     ]),
                               ),
                             ),
                           )
                         ];
                       },
-                      body: TabBarView(children: [])))
+                      body: TabBarView(
+                        controller: _tabController,
+                          children: const [
+                        Material(
+                          child: ListTile(
+                            leading: CircleAvatar(
+                              backgroundColor: Colors.grey,
+                            ),
+                            title: Text('Content'),
+                          ),
+                        ),
+                        Material(
+                          child: ListTile(
+                            leading: CircleAvatar(
+                              backgroundColor: Colors.grey,
+                            ),
+                            title: Text('Content'),
+                          ),
+                        ),
+                        Material(
+                          child: ListTile(
+                            leading: CircleAvatar(
+                              backgroundColor: Colors.grey,
+                            ),
+                            title: Text('Content'),
+                          ),
+                        ),
+                      ])))
             ],
           ),
         ),
