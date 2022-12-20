@@ -1,0 +1,37 @@
+[
+  {
+    "rating": 4.5,
+    "title": "My Favorite Book",
+    "text": "This is a great book with an engaging plot and compelling characters.",
+    "img": "https://example.com/book1.jpg",
+    "audio": "https://example.com/book1.mp3"
+  },
+  {
+    "rating": 3.5,
+    "title": "Another Good Book",
+    "text": "This book has a interesting storyline and well-developed characters.",
+    "img": "https://example.com/book2.jpg",
+    "audio": "https://example.com/book2.mp3"
+  },
+  {
+    "rating": 5,
+    "title": "An Excellent Book",
+    "text": "I couldn't put this book down! The plot was engaging and the characters were well-rounded.",
+    "img": "https://example.com/book3.jpg",
+    "audio": "https://example.com/book3.mp3"
+  },
+  {
+    "rating": 2.5,
+    "title": "A Mediocre Book",
+    "text": "This book was just okay. The plot was predictable and the characters were flat.",
+    "img": "https://example.com/book4.jpg",
+    "audio": "https://example.com/book4.mp3"
+  },
+  {
+    "rating": 4,
+    "title": "A Good Book",
+    "text": "This book had a solid plot and likable characters. It was a enjoyable read.",
+    "img": "https://example.com/book5.jpg",
+    "audio": "https://example.com/book5.mp3"
+  }
+]
