@@ -263,6 +263,7 @@ class _MyHomePageState extends State<MyHomePage>
                                             ),
                                             Text(
                                               books[indexi]["title"],
+                                              overflow: TextOverflow.clip,
                                               style: TextStyle(
                                                   fontSize: 16,
                                                   fontFamily: "avenir",
